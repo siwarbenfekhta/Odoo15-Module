@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="lieu_list_view">
+            <!--        <t t-set="head"><script>alert("kkk");</script></t>-->
+
+            <field name="name">Location list</field>
+            <field name="model">eventisi.lieu</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="address"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.ui.view" id="eventisi.form">
+            <field name="name">Lieu form</field>
+            <field name="model">eventisi.lieu</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="address"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="lieu_action_window">
+            <field name="name">Locations of events</field>
+            <field name="res_model">eventisi.lieu</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+        <!-- menu categories -->
+
+        <menuitem name="Lieux" id="lieu" parent="eventisi.menu_root" action="lieu_action_window"/>
+        <!--<menuitem name="Menu 2" id="university.menu_2" parent="university.menu_root"/>-->
+
+        <!--<menuitem name="Server to list" id="university" parent="university.menu_2"-->
+        <!--action="university.action_server"/>-->
+
+    </data>
+</odoo>

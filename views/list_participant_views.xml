@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="lieu_participant_view">
+            <field name="name">Particpant list</field>
+            <field name="model">eventisi.participant</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="eventisi.form">
+            <field name="name">Particpant list</field>
+            <field name="model">eventisi.participant</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                        </group>
+
+                    <notebook>
+                        <page string="List events">
+                            <field name="events_ids"/>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="part_action_window">
+            <field name="name">Particpants</field>
+            <field name="res_model">eventisi.participant</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- menu categories -->
+
+        <menuitem name="Particpants" id="part" parent="eventisi.menu_root" action="part_action_window"/>
+
+        <!--<menuitem name="Server to list" id="university" parent="university.menu_2"-->
+        <!--action="university.action_server"/>-->
+
+    </data>
+</odoo>

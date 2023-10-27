@@ -1,0 +1,159 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="custom_module_kanban_view">
+            <field name="name">custom.module.kanban</field>
+            <field name="model">eventisi.eventisi</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <!--list of field to be loaded -->
+                    <field name="titre"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_content p-0 m-0 position-relative row d-flex flex-fill">
+                                <div class="col-3 bg-primary p-2 text-center d-flex flex-column justify-content-center">
+                                    <field name="date" class="o_event_fontsize_20"/>
+                                </div>
+                                <div class="col-9 py-2 px-3 d-flex flex-column justify-content-between pt-3">
+                                    <h5 class="oe_product_vignette">
+                                        <h2>
+                                            <a type="open">
+                                                <field name="titre"></field>
+                                            </a>
+                                        </h2>
+                                    </h5>
+                                        <br></br>
+                                        <h5 class="o_event_fontsize_11 p-0">
+                                            <i class="fa fa-map-marker" title="Location"/>
+                                            <span class="o_text_overflow o_event_kanban_location"/>
+                                            <field name="lieu_id"/>
+                                        </h5>
+
+                                        <br></br>
+                                        <h5 class="o_event_fontsize_11 p-0">
+
+                                            <i class="fa fa-users" title="Location"/>
+                                            <field name="nb_inscris" string="Attendees"/>
+                                            Attendees
+
+                                        </h5>
+
+
+                                    </div>
+                                </div>
+
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="eventisi.listt">
+            <field name="name">Events list</field>
+            <field name="model">eventisi.eventisi</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="titre"/>
+                    <field name="type_id"/>
+                    <field name="date"/>
+                    <field name="duree"/>
+                    <field name="lieu_id"/>
+                    <field name="nb_participant_max"/>
+                    <field name="nb_participant_reste"/>
+                    <field name="organizer_id"/>
+                    <field name="url"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="eventisis_calendar">
+            <field name="name">eventisi.eventisi.calendar</field>
+            <field name="model">eventisi.eventisi</field>
+            <field name="arch" type="xml">
+                <calendar string="Events Calendar" date_start="date" color="titre" mode="month" quick_add="False">
+                    <field name="titre" filters="1"/>
+                    <field name="type_id"/>
+                </calendar>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="reporting_graph_view">
+            <field name="name">eventisi.eventisi.graph</field>
+            <field name="model">eventisi.eventisi</field>
+            <field name="arch" type="xml">
+                <graph string="graph" type="pie">
+                    <field name="titre"/>
+                    <field name="nb_participant_max"/>
+                    <field name="nb_participant_reste"/>
+
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="eventisi.form">
+            <field name="name">Event form</field>
+            <field name="model">eventisi.eventisi</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="website_go_to" string="Go to website" type="object" icon="fa-thin fa-globe"
+                                    class="oe_stat_button"/>
+                            <button string="Attendees" icon="fa-duotone fa-users" class="oe_stat_button">
+                                <field name="nb_inscris"/>
+                            </button>
+
+
+                        </div>
+
+                        <div class="oe_title">
+                            <label for="titre" string="Titre"/>
+                            <h1>
+                                <field class="o_text_overflow" name="titre"
+                                       placeholder="e.g. Conference for .."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type_id"/>
+                                <field name="lieu_id"/>
+                                <field name="organizer_id"/>
+                                <field name="duree"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="nb_participant_max"/>
+                                <field name="nb_participant_reste"/>
+                                <field name="url"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="List participants">
+                                <field name="participants_ids"/>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="reporting_action_window">
+            <field name="name">Reporting</field>
+            <field name="res_model">eventisi.eventisi</field>
+            <field name="view_mode">graph</field>
+        </record>
+        <!-- menu categories -->
+
+        <menuitem name="reporting" id="reporting" parent="eventisi.menu_root" action="reporting_action_window"/>
+
+        <!--<menuitem name="Server to list" id="university" parent="university.menu_2"-->
+        <!--action="university.action_server"/>-->
+
+    </data>
+</odoo>

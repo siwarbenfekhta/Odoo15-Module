@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="register_success">
+        <t  t-call="website.layout">
+        <xpath expr="." position="inside">
+
+            <link rel='stylesheet' href='/eventisi/static/src/css/bootstrap.css'/>
+        </xpath>
+        <br/>
+        <div class="container" style="margin-left: 10%">
+
+                <div class="col-lg-8">
+                     <t t-raw="html"/>
+
+
+
+            </div>
+        </div>
+              <br/>
+</t>
+  <br/>
+
+    </template>
+
+</odoo>

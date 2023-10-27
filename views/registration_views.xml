@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="register_form">
+        <t  t-call="website.layout">
+        <xpath expr="." position="inside">
+
+            <link rel='stylesheet' href='/eventisi/static/src/css/bootstrap.css'/>
+        </xpath>
+        <br/>
+        <div class="container" style="margin-left: 30%">
+            <form method="get" action="/eventisi/create">
+                <h1 class="h3 mb-3 font-weight-normal">Let's register Now ! Get your ticket</h1>
+                <div class="form-group  ">
+                    <label for="name">Name</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Name"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group ">
+                    <label for="email">Email address</label>
+                    <div class="col-sm-4">
+                        <input type="email" name="email" class="form-control" id="email"
+                               placeholder="Email"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group ">
+                    <label for="phone">Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone"/>
+                    </div>
+                </div>
+            <input type="hidden" id="event_id" name="event_id" t-att-value="event_id"/>
+                <br/>
+                <button type="submit" class="btn btn-primary">Register Now</button>
+                <br/>
+            </form>
+        </div>
+              <br/>
+</t>
+  <br/>
+
+    </template>
+
+</odoo>

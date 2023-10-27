@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href='/eventisi/static/src/scss/event_foldable_badge_report.scss' ?>
+<odoo>
+    <template id="badge">
+
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="eventisi.report_badge"/>
+            </t>
+        </t>
+    </template>
+    <template id="report_badge">
+        <xpath expr="." position="inside">
+
+            <link rel='stylesheet' href='/eventisi/static/src/scss/event_foldable_badge_report.scss'/>
+        </xpath>
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="doc">
+                <div class="o_event_foldable_badge_container">
+                    <div class="row">
+                        <!-- Front -->
+                        <div class="page p-1 col-6 o_event_foldable_badge_top">
+                            <div class="oe_structure"/>
+                        </div>
+                        <!-- Back -->
+                        <div class="page col-6 o_event_foldable_badge_top o_event_foldable_badge_ticket pt-4">
+                            <div class="oe_structure"/>
+                            <div class="o_event_foldable_badge_ticket_wrapper p-2">
+                                <div class="o_event_foldable_badge_ticket_wrapper_top page">
+                                    <h1 class="o_event_foldable_badge_event_name font-weight-bold text-center"
+                                        t-field="doc.titre"/>
+                                    <div t-field="doc.date"
+                                          class="font-weight-bold text-center"/>
+
+                                    <div class="text-center mt-5 pt-2">
+                                                                            <div class="o_event_foldable_badge_font_faded o_event_foldable_badge_font_small text-center">
+                                        <h5>Organizer Badge</h5>
+                                    </div>
+                                       <h2 t-field="doc.organizer_id" style="color : black"/> 
+                                    </div>
+                                </div>
+                                <br/>
+                                <div style="margin-left : 25%">
+                                <img
+                                        t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.titre, 200, 200)"/></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
